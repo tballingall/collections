@@ -1,6 +1,6 @@
 require 'feature_helper'
 
-RSpec.feature 'Registering' do
+RSpec.feature 'User create' do
   let(:name) { 'thisguy' }
   let(:email) { 'not@thatguy.com' }
   let(:password) { 'words' }
@@ -10,30 +10,28 @@ RSpec.feature 'Registering' do
     context 'with acceptable information' do
       scenario 'I can register for a new account' do
         visit '/users/new'
-        #click_link 'Sign up'
-        expect(page).to have_content 'Name' do
-          fill_in 'user_name', with: name
-          fill_in 'user_email', with: email
-          fill_in 'user_password', with: password
-          fill_in 'user_password_confirmation', with: password_confirmation
-        end
+        expect(page).to have_content('Name')
+        fill_in 'user_name', with: name
+        fill_in 'user_email', with: email
+        fill_in 'user_password', with: password
+        fill_in 'user_password_confirmation', with: password_confirmation
         click_button 'Sign Up'
-        expect(page).to have_content 'Signed Up'
+        expect(page).to have_content('Signed Up')
       end
     end
-        context 'with unacceptable information' do
-          let(:name) { nil }
+    context 'with unacceptable information' do
+      let(:name) { nil }
 
-          scenario 'I can see errors' do
-            visit '/users/new'
-           expect(page).to have_content 'Sign Up'
-            fill_in 'user_name', with: name
-            fill_in 'user_email', with: email
-            fill_in 'user_password', with: password
-            fill_in 'user_password_confirmation', with: password_confirmation
-          click_button 'Sign Up'
-          expect(page).to have_content 'Failed due to'
-        end
+      scenario 'I can see errors' do
+        visit '/users/new'
+        expect(page).to have_content('Sign up')
+        fill_in 'user_name', with: name
+        fill_in 'user_email', with: email
+        fill_in 'user_password', with: password
+        fill_in 'user_password_confirmation', with: password_confirmation
+        click_button 'Sign Up'
+        expect(page).to have_content('error')
       end
     end
+  end
 end
