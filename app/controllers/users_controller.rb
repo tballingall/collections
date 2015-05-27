@@ -4,14 +4,22 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = 'Signed Up'
-      redirect_to root_url
+      redirect_to @user
     else
-      render 'new'
+      render 'static_pages/error'
     end
   end
 

@@ -1,6 +1,6 @@
 %html
   %head
-    %title Collections
+    %title= content_for?(:title) ? content_for(:title) : 'Collections'
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
