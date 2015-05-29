@@ -1,3 +1,4 @@
+#
 module SessionTestHelpers
   # Command: Creates a user and sets the user_id in session to the user's id
   #
