@@ -5,9 +5,8 @@ module SessionTestHelpers
   # @param [Hash]
   # @return [self]
   #
-  def create_current_user(params = {})
-    @_current_user = create(:user, params)
-    page.set_rack_session(user_id: @_current_user.id)
-    @_current_user
+  def create_current_user(user)
+    page.set_rack_session(user_id: user.id)
+    user
   end
 end

@@ -23,6 +23,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    redirect_to root_path && return unless @user == current_user
+    # how do I insert an error message?
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = 'Successfully Updated'
+      redirect_to user_path
+    else
+      render 'static_pages/error'
+    end
+  end
+
   private
 
   def user_params
