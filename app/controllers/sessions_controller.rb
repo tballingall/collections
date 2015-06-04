@@ -1,11 +1,12 @@
 #
 class SessionsController < ApplicationController
+  skip_before_action :authenticate
+
   def new
   end
 
   def create
-    user = User.find_by_email(params[:user][:email])
-    if user && user.authenticate(params[:user][:password])
+    if user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       redirect_to user, notice: 'Logged in!'
     else
@@ -17,5 +18,11 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     redirect_to root_url, notice: 'Logged out!'
+  end
+
+  private
+
+  def user
+    @user ||= User.find_by_email(params[:user][:email])
   end
 end

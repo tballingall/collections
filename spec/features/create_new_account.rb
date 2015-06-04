@@ -9,7 +9,7 @@ RSpec.feature 'User create' do
   context 'As an uncredentialed user' do
     context 'with acceptable information' do
       scenario 'I can register for a new account' do
-        visit '/users/new'
+        visit new_user_path
         expect(page).to have_content('Name')
         fill_in 'user_name', with: name
         fill_in 'user_email', with: email
@@ -23,7 +23,7 @@ RSpec.feature 'User create' do
       let(:name) { nil }
 
       scenario 'I can see errors' do
-        visit '/users/new'
+        visit new_user_path
         expect(page).to have_content('Sign up')
         fill_in 'user_name', with: name
         fill_in 'user_email', with: email

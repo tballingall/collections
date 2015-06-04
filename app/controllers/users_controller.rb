@@ -1,5 +1,8 @@
 #
 class UsersController < ApplicationController
+  skip_before_action :authenticate, only: [:new, :create]
+  before_action :find_user, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -19,14 +22,11 @@ class UsersController < ApplicationController
       flash[:success] = 'Signed Up'
       redirect_to @user
     else
-      render 'static_pages/error'
+      render 'new'
     end
   end
 
   def edit
-    @user = User.find(params[:id])
-    redirect_to root_path && return unless @user == current_user
-    # how do I insert an error message?
   end
 
   def update
@@ -40,6 +40,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def find_user
+    @user = User.find(params[:id])
+    redirect_to root_path and return unless @user == current_user
+  end
 
   def user_params
     params.require(:user).permit(:name, :username, :email, :password,
