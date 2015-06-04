@@ -1,6 +1,6 @@
 #
 class UsersController < ApplicationController
-  skip_before_action :authenticate, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create]
   before_action :find_user, only: [:edit, :update]
 
   def new
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = 'Successfully Updated'
       redirect_to user_path
