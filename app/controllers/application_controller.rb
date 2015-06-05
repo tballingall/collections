@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :require_login, unless: :logged_in?
 
   def require_login
-    redirect_to login_path and return
+    redirect_to login_path
   end
 
   def log_in(user)

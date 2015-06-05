@@ -5,7 +5,7 @@ module SessionTestHelpers
   # @param [Hash]
   # @return [self]
   #
-  def create_current_user(user)
+  def log_in(user)
     page.set_rack_session(user_id: user.id)
     user
   end

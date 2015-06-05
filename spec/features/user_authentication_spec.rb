@@ -12,14 +12,12 @@ RSpec.feature 'Authentication' do
     context 'with correct email and password' do
       scenario 'allows me to log in' do
         visit root_url
-        expect(page).to have_link('Login')
-        expect(page).to_not have_link('Logout')
+        expect(page).to_not have_link('Log out')
         click_link('Login')
-        expect(page).to have_content('Email')
         fill_in 'Email', with: email
         fill_in 'Password', with: password
         click_button('Log in')
-        expect(page).to have_link('Logout')
+        expect(page).to have_link('Log out')
         expect(page).to_not have_link('Login')
         expect(page).to_not have_link('Sign up')
       end
@@ -31,7 +29,7 @@ RSpec.feature 'Authentication' do
       scenario 'does not allow me to log in' do
         visit root_url
         expect(page).to have_link('Login')
-        expect(page).to_not have_link('Logout')
+        expect(page).to_not have_link('Log out')
         click_link('Login')
         expect(page).to have_content('Email')
         fill_in 'Email', with: 'wrong email'
@@ -44,11 +42,12 @@ RSpec.feature 'Authentication' do
     end
 
     context 'and I am logged in' do
-      background { create(:user) }
+      let(:user) { create(:user) }
 
       scenario 'allows me to log out' do
-        visit @user
-        click_link('Logout')
+        log_in(user)
+        visit user_path(user)
+        click_link('Log out')
         expect(page).to have_content('Logged out!')
       end
     end

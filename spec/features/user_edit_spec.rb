@@ -3,13 +3,12 @@ require 'feature_helper'
 RSpec.feature 'Edit User' do
   context 'I am a member I am logged in' do
     let(:member) { create(:user) }
-    before(:each) { create_current_user(member) }
 
     context 'I can edit my own information' do
-      before { visit edit_user_path(member) }
-
       scenario 'should be able to edit my info using appropriate data' do
-        fill_in 'Name', with: 'another name'
+        log_in(member)
+        visit edit_user_path(member)
+        fill_in 'user_name', with: 'another name'
         click_button('Submit')
         expect(page).to have_content('Successfully Updated')
       end
@@ -19,6 +18,7 @@ RSpec.feature 'Edit User' do
       let(:other_user) { create(:user) }
 
       scenario "I can't edit and should be forwarded to homepage with error" do
+        log_in(member)
         visit edit_user_path(other_user)
         expect(page).to have_content('Log out')
       end

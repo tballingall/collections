@@ -1,6 +1,6 @@
 #
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create, :show]
   before_action :find_user, only: [:edit, :update]
 
   def new
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Successfully Updated'
       redirect_to user_path
     else
-      render 'static_pages/error'
+      render 'new'
     end
   end
 
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
-    redirect_to root_path and return unless @user == current_user
+    redirect_to root_path unless @user == current_user
   end
 
   def user_params

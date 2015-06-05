@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user.authenticate(params[:user][:password])
+    if authenticatable?
       session[:user_id] = user.id
       redirect_to user, notice: 'Logged in!'
     else
@@ -21,6 +21,10 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def authenticatable?
+    user && user.authenticate(params[:user][:password])
+  end
 
   def user
     @user ||= User.find_by_email(params[:user][:email])
