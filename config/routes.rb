@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example resource route (maps HTTP verbs to controller actions
-  # automatically):
-  #   resources :products
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users, except: :destroy
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+  root 'static_pages#home'
 end
