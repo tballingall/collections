@@ -18,5 +18,5 @@
   { name: 'there', email: 'has@tobeabetterway.com', password: '123', password_confirmation: '123' },
   { name: 'tocode', email: 'this@no.com', password: '123', password_confirmation: '123' }
 ].each do |user_params|
-  User.create(user_params)
+  User.create!(user_params)
 end

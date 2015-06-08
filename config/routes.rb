@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   root 'static_pages#home'
-end
+  resources :photos, only: [:new, :create, :index]
+  end
