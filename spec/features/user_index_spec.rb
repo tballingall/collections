@@ -16,6 +16,7 @@ RSpec.feature 'A user can vist the homepage' do
       scenario 'User list is paginated' do
         expect(page).to have_content 'Next'
         click_link(2)
+        click_link(1)
       end
 
       scenario 'User name links to profile' do
