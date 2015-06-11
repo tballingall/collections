@@ -1,0 +1,6 @@
+  .col-md-6.col-md-offset-3
+  = form_for(@photo) do |f|
+    = render 'shared/error_messages'
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+    = f.submit "Submit", class: "btn btn-secondary"_photo_form.html.haml

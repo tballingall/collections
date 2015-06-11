@@ -1,12 +1,10 @@
 %h5 Welcome
 %h6 User Name
 = "#{@user.name}, #{@user.email}"
+%br/
+Create Closet
 
-%h6 %u Add your user photo.
-
-= form_for(@photo) do |f|
-    = f.label :title
-    = f.text_field :title, class: 'form-control', required: true
-    = f.label :image
-    = f.file_field :image, required: true
-    = f.submit 'Submit', class: 'btn btn-primary btn-lg'
+%br/
+%br/
+%h2 Closets
+= link_to 'My Closets', user_closets_path(@user)

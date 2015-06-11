@@ -5,12 +5,12 @@ class ClosetsController < ApplicationController
   end
 
   def index
-    @closets = closet.all.paginate(page: params[:page], per_page: '6')
+    @closets = closet.all.paginate(page: params[:page], per_page: '9')
   end
 
   def show
-    @closet = closet.find(params[:id])
-    @photo = @closet.photos.new
+    @closet = closet.find(:id) #user_id
+    # @photo = @closet.photos.new
   end
 
   def create
@@ -35,16 +35,15 @@ class ClosetsController < ApplicationController
       render 'new'
     end
   end
-#   private
+   private
 
 #   def find_closet
 #     @closet = closet.find(params[:id])
 #     redirect_to root_path unless @closet == current_closet
 #   end
 
-#   def closet_params
-#     params.require(:closet).permit(:name, :closetname, :email, :password,
-#                                  :password_confirmation)
-#   end
+   def closet_params
+     params.require(:closet).permit(:name, :id)
+   end
 # end
 end

@@ -1,0 +1,12 @@
+= will_paginate @closets
+%h1 Index of Users
+
+%table{:style => "width:500px"}/
+%thead/
+%tr
+  %th{:style => "text-align:right;"} User
+  %th{:style => "text-align:right;"} Name
+- @closet.each do |closet|
+  %tr
+    %td{:style => "text-align:right;"}= link_to closet_name, user
+    / %td{:style => "text-align:right;"}= user.email
