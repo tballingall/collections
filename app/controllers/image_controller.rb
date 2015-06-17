@@ -1,5 +1,6 @@
 #
 class ImageController < ApplicationController
+
   def new
     @image = Image.new
   end
@@ -36,10 +37,10 @@ class ImageController < ApplicationController
 
   private
 
-  # def find_image
-  #   @image = Image.find(params[:id])
-  #   redirect_to root_path unless @image == current_image
-  # end not useful atm
+  def find_image
+    @image = Image.find(params[:id])
+    redirect_to root_path unless @image == current_image
+  end
 
   def image_params
     params.require(:image).permit(:image_uid, :image_name)

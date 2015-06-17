@@ -1,6 +1,4 @@
-#
 class Image < ActiveRecord::Base
-  attr_accessor :image_uid, :image_name
+  belongs_to :user
   dragonfly_accessor :image
-
-  end
+end
