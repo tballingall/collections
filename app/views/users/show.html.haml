@@ -1,6 +1,13 @@
+- provide(:title, 'User Home')
 %h5 Welcome
 %h6 User Name
 = "#{@user.name}, #{@user.email}"
 %br
 %br
 = image_tag @user.image.thumb('200x200#').url if @user.image_stored?
+%br
+%br
+%br
+%h1 Your Closets
+
+= render 'album/album'

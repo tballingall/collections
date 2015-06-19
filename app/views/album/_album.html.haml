@@ -1,0 +1,7 @@
+= form_for(@album) do |f|
+  = render 'shared/error_messages'
+  = f.label :name
+  = f.text_field :name, class: 'form-control'
+  = f.file_field :image
+  %br
+  = f.submit "Submit", class: "btn btn-primary"
