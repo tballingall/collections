@@ -1,6 +1,5 @@
 #
 class ImageController < ApplicationController
-
   def new
     @image = Image.new
   end
@@ -38,13 +37,11 @@ class ImageController < ApplicationController
   private
 
   def find_image
-    @image = Image.find(params[:id])
+    @image = Image.find(params[:image_uid])
     redirect_to root_path unless @image == current_image
   end
 
   def image_params
     params.require(:image).permit(:image_uid, :image_name)
-      #modified from drafon fly
   end
 end
-#Can't display images, can't create photo_id
