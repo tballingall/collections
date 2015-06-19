@@ -1,12 +1,6 @@
 %h5 Welcome
 %h6 User Name
 = "#{@user.name}, #{@user.email}"
-
-%h6 %u Add your user photo.
-
-= form_for(@photo) do |f|
-    = f.label :title
-    = f.text_field :title, class: 'form-control', required: true
-    = f.label :image
-    = f.file_field :image, required: true
-    = f.submit 'Submit', class: 'btn btn-primary btn-lg'
+%br
+%br
+= image_tag @user.image.thumb('200x200#').url if @user.image_stored?

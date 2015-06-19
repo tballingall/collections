@@ -36,6 +36,7 @@ gem 'bootstrap-sass'
 
 # image processing
 gem 'dragonfly', '~> 1.0.10'
+gem 'rack-cache', require: 'rack/cache'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger

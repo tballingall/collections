@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @photo = @user.photos.new
   end
 
   def create
@@ -48,6 +47,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :username, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation, :image)
   end
 end
