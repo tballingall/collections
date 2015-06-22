@@ -1,6 +1,8 @@
 #
 class AlbumsController < ApplicationController
   before_action :require_login, unless: :logged_in?
+  before_action :user
+
   def new
     @album = Album.new
   end
@@ -38,6 +40,10 @@ class AlbumsController < ApplicationController
   end
 
   private
+
+  def user
+    @user = User.find(params[:user_id])
+  end
 
   def album_params
     params.require(:album).permit(:album_name, :username, :image, :album_uid,
