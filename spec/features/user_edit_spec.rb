@@ -14,7 +14,7 @@ RSpec.feature 'Edit User' do
       end
     end
 
-    context 'I try edit information that is not mine' do
+    context 'I try to edit information that is not mine' do
       let(:other_user) { create(:user) }
 
       scenario "I can't edit and should be forwarded to homepage with error" do
