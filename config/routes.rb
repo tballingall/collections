@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :albums
+    resources :albums, shallow: true
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :albums

@@ -8,8 +8,8 @@ RSpec.feature 'An authenticated user can add a new image collection to their acc
     scenario 'A link to this image collection will appear on my profile page' do
       visit user_path(member)
       expect(page).to have_link('Your Albums')
-    end
-
+      click_link('Your Albums')
+     end
   end
 end
 

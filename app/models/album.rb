@@ -1,5 +1,7 @@
 class Album < ActiveRecord::Base
   belongs_to :user
   has_many :images
-dragonfly_accessor :image
+  validates :name,
+            presence: true,
+            uniqueness: { case_sensitive: false, scope: :user_id }
 end

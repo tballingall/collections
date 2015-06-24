@@ -1,7 +1,6 @@
 #
 class AlbumsController < ApplicationController
   before_action :require_login, unless: :logged_in?
-  before_action :user
 
   def new
     @album = Album.new
@@ -12,28 +11,27 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find(params[:id])
+    @album = album
   end
 
   def create
-    @album = Album.new(album_params)
-    @album.user_id = current_user_id if current_user?
+      @album = current_user.albums.new(album_params)
     if @album.save
       flash[:success] = 'Success!'
-      redirect_to user_albums_path
+      redirect_to album_path(@album)
     else
       render 'new'
     end
   end
 
   def edit
-    @album = Album.current_user
+    @album = album
   end
 
   def update
     if @album.update_attributes(album_params)
       flash[:success] = 'Successfully Updated'
-      redirect_to user_album_path
+      redirect_to user_album_path(current_user)
     else
       render 'edit'
     end
@@ -41,12 +39,17 @@ class AlbumsController < ApplicationController
 
   private
 
+  def album
+    @album ||= Album.find(params[:id])
+  end
+
   def user
-    @user = User.find(params[:user_id])
+    return album.user unless params[:user_id].present?
+    @_album ||= User.find(params[:user_id])
   end
 
   def album_params
-    params.require(:album).permit(:album_name, :username, :image, :album_uid,
-                  :user_id)
+    params.require(:album).permit(:name, :user_id)
   end
 end
+# Tom's solution: user.albums.build for each Album

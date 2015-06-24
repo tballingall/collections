@@ -7,4 +7,6 @@
 = image_tag @user.image.thumb('200x200#').url if @user.image_stored?
 %br
 
-%h5 #{link_to "Your Albums", [@users, :albums]}
+%h5 #{link_to "Your Albums", user_albums_path(@user)}
+- @user.albums.each do |album|
+  = link_to album.name, album
