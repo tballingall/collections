@@ -1,0 +1,7 @@
+- if @album.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      The form contains #{pluralize(@album.errors.count, "error")}.
+    %ul
+      - @album.errors.full_messages.each do |msg|
+        %li= msg

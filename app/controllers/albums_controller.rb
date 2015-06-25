@@ -15,7 +15,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
-      @album = current_user.albums.new(album_params)
+    @album = current_user.albums.new(album_params)
     if @album.save
       flash[:success] = 'Success!'
       redirect_to album_path(@album)
@@ -53,3 +53,4 @@ class AlbumsController < ApplicationController
   end
 end
 # Tom's solution: user.albums.build for each Album
+# keeping comment to remember question

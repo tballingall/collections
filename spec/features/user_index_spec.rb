@@ -21,7 +21,6 @@ RSpec.feature 'A user can vist the homepage' do
 
       scenario 'User name links to profile' do
         user = User.first
-
         expect(page).to have_content 'Index of Users'
         click_link(user.name)
         expect(page).to have_content 'User Name'

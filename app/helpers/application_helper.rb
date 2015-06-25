@@ -11,4 +11,22 @@ module ApplicationHelper
       #{link_to 'Show Users', users_path}"
     end
   end
+
+  private
+
+  def _render_errors(model, text)
+    "#{error_count(model, text)} #{error_messages(model)}".html_safe
+  end
+
+  def error_count(model, text)
+    content_tag(:h2, "#{pluralize(model.errors.count, 'error')} #{text}")
+  end
+
+  def error_messages(model)
+    content_tag :ul do
+      model.errors.full_messages.map do |message|
+        concat(content_tag(:li, message))
+      end
+    end
+  end
 end

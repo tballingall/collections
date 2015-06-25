@@ -29,4 +29,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def deny_access
+    redirect_to root_url, notice: 'Access Denied'
+  end
 end
