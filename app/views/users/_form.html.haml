@@ -10,4 +10,7 @@
     = f.password_field :password, class: 'form-control'
     = f.label :password_confirmation, "Confirmation"
     = f.password_field :password_confirmation, class: 'form-control'
+    %br
+    = f.file_field :image
+    %br
     = f.submit "Submit", class: "btn btn-primary"
