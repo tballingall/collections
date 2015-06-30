@@ -1,4 +1,4 @@
 - provide(:title, 'Sign up')
 %h1 Sign up
 
-= render 'form'
+= render partial: 'form', locals: {model: @user}
