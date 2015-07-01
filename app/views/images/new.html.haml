@@ -1,0 +1,21 @@
+%h2= "#{@album.image.new_title}".html.safe
+#new-picture
+  = form_for [@image.album, @image] do |f|
+    = render partial: 'shared/error_messages', locals: {model: @image}
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :color
+      = f.text_field :color
+    .field
+      = f.label :year
+      = f.select :year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"}
+    .field
+      = f.label :image
+      = f.file_field :image
+    .field
+      = f.label :description
+      = f.text_area :description
+    .actions
+      = f.submit t('album.picture.fields.submit')
