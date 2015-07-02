@@ -1,6 +1,6 @@
 #
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:index, :new, :create, :show]
+  before_action :require_login, except: [:index, :show]
   before_action :find_user, only: [:edit, :update]
 
   def new

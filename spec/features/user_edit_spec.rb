@@ -30,6 +30,7 @@ RSpec.feature 'Edit User' do
 
     scenario 'should be able to view profiles' do
       visit user_path(user)
+      save_and_open_page
       expect(page).to have_content('User Name')
     end
     scenario 'should not be able to edit profiles' do

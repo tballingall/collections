@@ -1,1 +1,4 @@
 %h2= "#{@album.name} by #{ link_to @album.user.name, @album.user }".html_safe
+%h5 #{link_to "Update Your Album", edit_album_path(@album)}
+
+%h5 #{link_to "Add an Image", new_album_image_path(@album)}

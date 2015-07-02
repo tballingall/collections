@@ -1,17 +1,22 @@
 #
 class AlbumsController < ApplicationController
-  before_action :require_login, unless: :logged_in?
+  before_action :require_login, except: [:show, :index]
+  # before_action :ensure_current_user, except: [:show, :index]
+
+  def show
+    @album = album
+  end
 
   def new
-    @album = Album.new
+    @album = current_user.albums.new
+  end
+
+  def edit
+    @album = album
   end
 
   def index
     @albums = Album.all.paginate(page: params[:page], per_page: '10')
-  end
-
-  def show
-    @album = album
   end
 
   def create
@@ -24,11 +29,7 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def edit
-    @album = album
-  end
-
-  def update
+   def update
     if @album.update_attributes(album_params)
       flash[:success] = 'Successfully Updated'
       redirect_to user_album_path(current_user)
@@ -49,7 +50,7 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:name, :user_id)
+    params.require(:album).permit(:name)
   end
 end
 # Tom's solution: user.albums.build for each Album

@@ -1,9 +1,9 @@
 #
-class ImageController < ApplicationController
+class ImagesController < ApplicationController
   before_action :require_login, except: [:show, :index]
-  before_action :ensure_current_user. except [:show, :index]
+  before_action :ensure_current_user, except: [:show, :index]
   def new
-    @image = Image.new
+    @image = album.images.new
   end
 
   def index
@@ -25,14 +25,19 @@ class ImageController < ApplicationController
   end
 
   def cover
-    album.update_attributes(cover: picture)
-    redirect_to album_path(album), notice: I18n.t('album.picture.success')
+    album.update_attributes(cover: image)
+    redirect_to album_path(album)
   end
 
   private
 
+  def album
+    @album ||= Album.find(params[:album_id])
+  end
+
   def image
     @_image ||= Image.find(params[:id])
+  end
 
   def find_image
     @image = Image.find(params[:image_uid])
