@@ -6,16 +6,15 @@ class Image < ActiveRecord::Base
   validates :name, presence: true
   validates :image, presence: :true
 
- after_create :maybe_primary
+  after_create :maybe_primary
 
- # query: Returns the url for an image thumb (stolen)
- #
- # @return [String]
- #
+  # query: Returns the url for an image thumb (stolen)
+  #
+  # @return [String]
 
- def thumb_url
-  image.thumb('400x200#').url
- end
+  def thumb_url
+    image.thumb('400x200#').url
+  end
 
   private
 

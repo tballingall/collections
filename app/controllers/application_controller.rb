@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
   # Returns true if the user is logged in, nil otherwise.
   def logged_in?
     !current_user.nil?
-    #current_user && current_user.id.present?
   end
   helper_method :logged_in?
 
@@ -29,15 +28,25 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.where(id: session[:user_id]).first
   end
-    helper_method :current_user
+  helper_method :current_user
 
   def ensure_current_user
-    return deny_access unless current_user #?(user)
+    return deny_access unless current_user?(user)
     nil
   end
-
 
   def deny_access
     redirect_to root_url, notice: 'Access Denied'
   end
+
+  # borrowed from Brian - hoping to stop user id from bring nil
+  # also need to define current_user? to regain functionality
+  # is there a better way to handle this? NullUser in user.rb model
+
+  def current_user?(user)
+    return false if user.nil?
+    return false if user.is_a?(User::NullUser)
+    current_user == user
+  end
+  helper_method :current_user?
 end

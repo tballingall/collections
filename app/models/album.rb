@@ -10,12 +10,12 @@ class Album < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false, scope: :user_id }
 
- # query: Returns whether the given image is the cover for this album
+  # query: Returns whether the given image is the cover for this album
   #
   # @return [Boolean]
   # stolen
   #
-def cover?(image)
+  def cover?(image)
     cover == image
   end
 end

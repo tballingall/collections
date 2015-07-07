@@ -2,7 +2,7 @@ require 'feature_helper'
 
 RSpec.feature 'A user can vist the homepage' do
   context 'I am a member I am logged in' do
-    let! (:user) { create_current_user }
+    let!(:user) { create_current_user }
     before do
       7.times do
         create(:user)

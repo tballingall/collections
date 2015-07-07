@@ -1,7 +1,8 @@
 #
 class UsersController < ApplicationController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login, except: [:new, :create, :index, :show]
   before_action :find_user, only: [:edit, :update]
+  include ProfileHelper
 
   def new
     @user = User.new

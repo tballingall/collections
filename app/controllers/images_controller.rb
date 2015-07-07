@@ -32,6 +32,7 @@ class ImagesController < ApplicationController
   private
 
   def album
+    return image.album unless params[:album_id].present?
     @album ||= Album.find(params[:album_id])
   end
 
@@ -39,9 +40,8 @@ class ImagesController < ApplicationController
     @_image ||= Image.find(params[:id])
   end
 
-  def find_image
-    @image = Image.find(params[:image_uid])
-    redirect_to root_path unless @image == current_image
+  def user
+    album.user
   end
 
   def image_params

@@ -12,4 +12,19 @@ class User < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false }
 
+  # query: Return a null user object
+  #
+  # Returns a Struct which responds to id, email, username, and authenticate
+  #
+  # @return [User] User duck
+  #
+  def self.null_user
+    NullUser.new
+  end
+
+  # User duck type for null user pattern
+  #
+  class NullUser
+    attr_reader :id, :email, :username
+  end
 end

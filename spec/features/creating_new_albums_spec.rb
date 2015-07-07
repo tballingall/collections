@@ -5,9 +5,9 @@ RSpec.feature 'An authenticated user can add new albums to their account' do
 
   context 'I am a logged in member' do
     scenario 'A link to this image collection will appear on my profile page' do
+      log_in(member)
       visit user_path(member)
-      expect(page).to have_link('Your Albums')
-      click_link('Your Albums')
+      expect(page).to have_content('Your Albums')
     end
   end
 

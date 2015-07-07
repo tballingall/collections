@@ -1,7 +1,7 @@
 #
 class AlbumsController < ApplicationController
   before_action :require_login, except: [:show, :index]
-  # before_action :ensure_current_user, except: [:show, :index]
+  before_action :ensure_current_user, except: [:show, :index]
 
   def show
     @album = album
@@ -29,7 +29,7 @@ class AlbumsController < ApplicationController
     end
   end
 
-   def update
+  def update
     if @album.update_attributes(album_params)
       flash[:success] = 'Successfully Updated'
       redirect_to user_album_path(current_user)

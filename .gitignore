@@ -27,3 +27,6 @@
 
 #ignore dragonfly
 /public/system
+
+#ignore spec uploads
+/spec/support/upload
