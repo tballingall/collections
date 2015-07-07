@@ -14,7 +14,7 @@ RSpec.feature 'Edit User' do
       end
     end
 
-    context 'I try edit information that is not mine' do
+    context 'I try to edit information that is not mine' do
       let(:other_user) { create(:user) }
 
       scenario "I can't edit and should be forwarded to homepage with error" do
@@ -29,8 +29,8 @@ RSpec.feature 'Edit User' do
     let(:user) { create(:user) }
 
     scenario 'should be able to view profiles' do
-      visit user_path(user)
-      expect(page).to have_content('User Name')
+      visit users_path
+      expect(page).to have_content('Index of Users')
     end
     scenario 'should not be able to edit profiles' do
       visit edit_user_path(user)

@@ -24,3 +24,9 @@
 # Ignore yardoc output
 /doc
 .yardoc
+
+#ignore dragonfly
+/public/system
+
+#ignore spec uploads
+/spec/support/upload
