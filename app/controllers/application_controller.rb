@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def ensure_current_user
-    return deny_access unless current_user?(user)
+    return deny_access unless permitted?(user)
     nil
   end
 
@@ -39,14 +39,16 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, notice: 'Access Denied'
   end
 
-  # borrowed from Brian - hoping to stop user id from bring nil
-  # also need to define current_user? to regain functionality
-  # is there a better way to handle this? NullUser in user.rb model
+  # borrowed from Brian - can't think of a better name
+  # checks to see if a user is present, if so is it an admin
+  # if yes to either, allow through the gate
+  # otherwise treat like guest
 
-  def current_user?(user)
+  def permitted?(user)
     return false if user.nil?
     return false if user.is_a?(User::NullUser)
+    return true if current_user.admin?
     current_user == user
   end
-  helper_method :current_user?
+  helper_method :permitted?
 end

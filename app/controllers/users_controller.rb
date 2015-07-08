@@ -1,7 +1,8 @@
 #
 class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create, :index, :show]
-  before_action :find_user, only: [:edit, :update]
+  # a.savebefore_action :find_user, only: [:edit, :update]
+  before_action :ensure_current_user, only: [:edit, :udpate]
   include ProfileHelper
 
   def new
@@ -31,15 +32,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if user.update_attributes(user_params)
       flash[:success] = 'Successfully Updated'
-      redirect_to user_path
+      redirect_to user_path(user)
     else
       render 'edit'
     end
   end
 
   private
+
+  def user
+    @user = User.find(params[:id])
+  end
 
   def find_user
     @user = User.find(params[:id])

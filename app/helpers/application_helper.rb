@@ -12,6 +12,11 @@ module ApplicationHelper
     end
   end
 
+  def admin_account(user)
+    return image_tag 'finger.jpg' if user.admin?
+    ""
+  end
+
   private
 
   def _render_errors(model, text)

@@ -1,12 +1,12 @@
 #
 module ProfileHelper
   def edit_profile_link(user)
-    return edit_profile_link! if current_user?(user)
+    return edit_profile_link! if permitted?(user)
     ''
   end
 
   def new_album_link(user)
-    return new_album_link! if current_user?(user)
+    return new_album_link! if permitted?(user)
     ''
   end
 

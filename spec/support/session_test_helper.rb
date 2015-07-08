@@ -11,8 +11,14 @@ module SessionTestHelpers
   end
 
   def create_current_user(params = {})
-    @_user ||= create(:user, params)
-    page.set_rack_session(user_id: @_user.id)
-    @_user
+    @_current_user = create(:user, params)
+    page.set_rack_session(user_id: @_current_user.id)
+    @_current_user
+  end
+
+  def create_current_admin(params = {})
+    @_current_user = create(:admin, params)
+    page.set_rack_session(user_id: @_current_user.id)
+    @_current_user
   end
 end
