@@ -4,8 +4,11 @@ RSpec.feature 'A user can vist the homepage' do
   context 'I am a member I am logged in' do
     let!(:user) { create_current_user }
     before do
-      7.times do
+      3.times do
         create(:user)
+        2.times do
+          create(:admin)
+        end
       end
     end
 
@@ -18,6 +21,11 @@ RSpec.feature 'A user can vist the homepage' do
         expect(page).to have_content 'Next'
         click_link(2)
         click_link(1)
+      end
+
+      scenario 'Admin\'s have specific icons' do
+        expect(page.html).to match(alt="Freedom")
+        save_and_open_page
       end
 
       scenario 'User name links to profile' do
