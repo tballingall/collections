@@ -1,7 +1,7 @@
 #
 class ImagesController < ApplicationController
   before_action :require_login, except: [:show, :index]
-  before_action :ensure_current_user, except: [:show, :index]
+  before_action :ensure_current_user, except: [:show, :index, :destroy]
   def new
     @image = album.images.new
   end
@@ -22,6 +22,12 @@ class ImagesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @image = Image.find(params[:id])
+    @image.destroy
+    redirect_to images_path
   end
 
   def cover

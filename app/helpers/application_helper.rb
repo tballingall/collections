@@ -4,7 +4,8 @@ module ApplicationHelper
     if logged_in?
       "#{link_to 'Log out', logout_path}
       #{link_to 'Edit', edit_user_path(current_user)}
-      #{link_to 'Show All Users', users_path}"
+      #{link_to 'Show All Users', users_path}
+      #{link_to 'Home', user_path(current_user)}"
     else
       "#{link_to 'Sign up now!', signup_path}
       #{link_to 'Login', login_path}
@@ -12,7 +13,7 @@ module ApplicationHelper
     end
   end
 
-  def admin_account(user)
+  def admin_mark(user)
     return image_tag('finger.jpg', width: '32', height: '32', alt: 'Freedom', class: 'admin') if user.admin?
     ""
   end

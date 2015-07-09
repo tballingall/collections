@@ -24,8 +24,7 @@ RSpec.feature 'A user can vist the homepage' do
       end
 
       scenario 'Admin\'s have specific icons' do
-        expect(page.html).to match(alt="Freedom")
-        save_and_open_page
+        expect(page.html).to match("Freedom")
       end
 
       scenario 'User name links to profile' do

@@ -1,12 +1,11 @@
 - provide(:title, 'User Home')
 %h5 Welcome
-%h6 User Name
 = "#{@user.name}, #{@user.email}"
+= link_to 'Admin Review', album_images_path(current_user) if @user.admin?
 %br
 %br
 = image_tag @user.image.thumb('200x200#').url if @user.image_stored?
 %br
-
 %p= link_to 'New Album', new_user_album_path(current_user)
 %br
 %br
