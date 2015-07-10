@@ -7,8 +7,9 @@ RSpec.feature 'Managing Images' do
 
     scenario 'I can access an index of all images' do
       visit user_path(admin)
-      click_link 'Image Review'
-      expect(page).to have_css(%(img[src="#{image.image.url}"]))
+      click_link 'Admin Review'
+      save_and_open_page
+      expect(page).to have_content(image.alt_text)
     end
   end
 end

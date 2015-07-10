@@ -1,9 +1,8 @@
-h2% Image Review
+%h2 Image Review
 = will_paginate @images
 
--@images.each do |image|
+-@images.order(:year).each do |image|
   = div_for(image) do
     = image_tag image.thumb_url
+    = image.year
     = link_to image.name, image
-    = link_to('Destroy', image, method: :delete,
-     data:{ confirm: 'Are you sure?'})

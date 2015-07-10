@@ -24,14 +24,14 @@ RSpec.feature 'A user can vist the homepage' do
       end
 
       scenario 'Admin\'s have specific icons' do
-        expect(page.html).to match("Freedom")
+        expect(page.html).to match('Freedom')
       end
 
       scenario 'User name links to profile' do
         user = User.first
         expect(page).to have_content 'Index of Users'
         click_link(user.name)
-        expect(page).to have_content 'User Name'
+        expect(page).to have_content 'Name'
       end
     end
   end

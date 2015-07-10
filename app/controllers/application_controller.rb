@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, notice: 'Access Denied'
   end
 
+  def check_admin
+    return deny_access unless current_user.admin?
+  end
+
   # borrowed from Brian - can't think of a better name
   # checks to see if a user is present, if so is it an admin
   # if yes to either, allow through the gate

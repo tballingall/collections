@@ -14,8 +14,10 @@ module ApplicationHelper
   end
 
   def admin_mark(user)
-    return image_tag('finger.jpg', width: '32', height: '32', alt: 'Freedom', class: 'admin') if user.admin?
-    ""
+    return image_tag('
+      finger.jpg', width: '32', height: '32', alt: 'Freedom', class: 'admin'
+                    ) if user.admin?
+    ''
   end
 
   private

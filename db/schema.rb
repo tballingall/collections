@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707200709) do
+ActiveRecord::Schema.define(version: 20150709220338) do
 
   create_table "albums", force: :cascade do |t|
     t.string  "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150707200709) do
     t.text    "description"
     t.string  "image_uid"
     t.string  "image_name"
+    t.boolean "flagged",     default: false
   end
 
   add_index "images", ["album_id"], name: "index_images_on_album_id"

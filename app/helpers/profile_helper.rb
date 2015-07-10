@@ -10,8 +10,8 @@ module ProfileHelper
     ''
   end
 
-  def admin_images_link(user)
-    return album_images_link! if user.admin?
+  def admin_images_link
+    return album_images_link! if current_user.admin?
   end
 
   private

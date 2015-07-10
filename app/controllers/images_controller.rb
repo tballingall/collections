@@ -1,7 +1,8 @@
 #
 class ImagesController < ApplicationController
-  before_action :require_login, except: [:show, :index]
-  before_action :ensure_current_user, except: [:show, :index, :destroy]
+  before_action :require_login, except: [:show]
+  before_action :ensure_current_user, except: [:show, :index]
+  before_action :check_admin, only: [:index]
   def new
     @image = album.images.new
   end
