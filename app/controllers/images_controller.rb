@@ -36,6 +36,15 @@ class ImagesController < ApplicationController
     redirect_to album_path(album)
   end
 
+  def flagged
+    @image = Image.find(params[:id])
+    @image.toggle!(flagged)
+    flash[:success] = 'Flagged!'
+    redirect_to images_path
+  end
+
+
+
   private
 
   def album
@@ -52,6 +61,6 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:name, :description, :year, :image)
+    params.require(:image).permit(:name, :description, :year, :color, :image)
   end
 end

@@ -2,7 +2,6 @@
 class AlbumsController < ApplicationController
   before_action :require_login, except: [:show, :index]
   before_action :ensure_current_user, except: [:show, :index]
-
   def show
     @album = album
   end

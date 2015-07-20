@@ -16,6 +16,10 @@ class Image < ActiveRecord::Base
     image.thumb('400x200#').url
   end
 
+  def full_size
+    image.thumb('400x400#').url
+  end
+
   private
 
   def maybe_primary
