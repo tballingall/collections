@@ -34,6 +34,10 @@ gem 'bcrypt', '~> 3.1.7'
 # bootstrap css integration
 gem 'bootstrap-sass'
 
+# image processing
+gem 'dragonfly', '~> 1.0.10'
+gem 'rack-cache', require: 'rack/cache'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   # console
@@ -45,6 +49,9 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Gemfile for Rails 3+, Sinatra, or Merb
+  gem 'will_paginate', '~> 3.0.5'
 
   gem 'rspec-rails', '~> 3.2.1'
 end

@@ -1,6 +1,6 @@
 #
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create, :show]
+  skip_before_action :require_login, only: [:index, :new, :create, :show]
   before_action :find_user, only: [:edit, :update]
 
   def new
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.paginate(page: params[:page], per_page: '6')
   end
 
   def show
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Successfully Updated'
       redirect_to user_path
     else
-      render 'new'
+      render 'edit'
     end
   end
 
@@ -47,6 +47,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :username, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation, :image, :album)
   end
 end
